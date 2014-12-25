@@ -5,6 +5,8 @@ var Map = $("#map"), // Map Element
 	map; // map object
 
 
+// because sometimes I don't want jq
+var query = document.querySelectorAll.bind(document);
 //I know this is bad
 NodeList.prototype.foreach = Array.prototype.forEach;
 NodeList.prototype.map = Array.prototype.map;
@@ -110,10 +112,10 @@ function Tile (num, width, height) {
 }
 
 function save() {
-	map.state = $(".piece").map(function(piece){
+	map.state = query(".piece").map(function(piece){
 		return {location: this.parentNode.id, id: this.id};
-	}).toArray();
-	map.visible = document.querySelectorAll(".visible").map(function(tile){
+	});
+	map.visible = query(".visible").map(function(tile){
 		return tile.id;
 	});
 	localStorage.map = JSON.stringify(map);
