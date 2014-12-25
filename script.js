@@ -61,15 +61,15 @@ $("#map-picker").change(function(){
 
 // Dragand Drop
 
-Map.on(".tile", "dragover", function(e){
+Map.on("dragover", ".tile", function(e){
  	if (e.preventDefault) e.preventDefault(); // allows us to drop
     e.originalEvent.dataTransfer.dropEffect = 'copy';
 	return false;	
-}).on(".tile", "dragenter", function(e){
+}).on("dragenter",".tile", function(e){
 	return false;
-}).on(".tile", "dragover", function(){
+}).on("dragover", ".tile", function(){
 	return false;
-}).on(".tile", "drop", function(e){
+}).on("drop", ".tile", function(e){
 	if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting...why???
 
     var src = e.originalEvent.dataTransfer.getData("text");
