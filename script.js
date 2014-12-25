@@ -113,7 +113,7 @@ function Tile (num, width, height) {
 
 function save() {
 	map.state = query(".piece").map(function(piece){
-		return {location: this.parentNode.id, id: this.id};
+		return {location: piece.parentNode.id, id: piece.id};
 	});
 	map.visible = query(".visible").map(function(tile){
 		return tile.id;
