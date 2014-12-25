@@ -5,6 +5,10 @@ var Map = $("#map"), // Map Element
 	map; // map object
 
 
+//I know this is bad
+NodeList.prototype.foreach = Array.prototype.forEach;
+NodeList.prototype.map = Array.prototype.map;
+
 // Setup
 
 data.pieces.forEach(function(src, index){
@@ -31,10 +35,18 @@ data.maps.forEach(function(m){
 
 // Events
 
-$("#reload-btn").click(function(){
-
-});
+$("#save-btn").click(save);
+$("#load-btn").click(load);
  
+$("#checkbox").click(function(){
+	map.hidden = this.checked;
+	if (this.checked) {
+		Map.addClass("hidden");
+	} else {
+		Map.removeClass("hidden")
+	}
+});
+
  $("#reset-btn").click(function(){
  	$(".piece").appendTo("#pieces-holder");
  });
@@ -79,6 +91,9 @@ Map.on("dragover", ".tile", function(e){
     }).appendTo(this);
 
     return false;
+}).on("dblclick", ".tile", function(e){
+	if (map.hidden)
+		$(this).toggleClass("visible");
 });
 
 
@@ -94,5 +109,27 @@ function Tile (num, width, height) {
 
 }
 
+function save() {
+	map.state = $(".piece").map(function(piece){
+		return {location: this.parentNode.id, id: this.id};
+	}).toArray();
+	map.visible = document.querySelectorAll(".visible").map(function(tile){
+		return tile.id;
+	});
+	localStorage.map = JSON.stringify(map);
+}
+
+function load() {
+	map = JSON.parse(localStorage.map)
+	map.state.forEach(function(o){
+		document.getElementById(o.location).appendChild(document.getElementById(o.id));
+	});
+	map.visible.forEach(function(t){
+		document.getElementById(t).className = "tile visible";
+	});
+	if (map.hidden) {
+		$("#checkbox").click();
+	}
+}
 
 });
