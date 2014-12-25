@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>D&D Map</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse">
+              <button id="reload-btn">Reload</button>
+              <button id="reset-btn">Reset</button>
+              <select id='map-picker'>
+                <option>Map</option>
+              </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div id="map-holder">_
+    <div id="pieces-holder"></div>
+    <div id="map"></div>
+  </div>
+  <script src="data.js"></script>
+  <script src="interact.js"></script>
+  <script src="jq.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
