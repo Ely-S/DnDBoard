@@ -51,6 +51,7 @@ $("#checkbox").click(function(){
 
  $("#reset-btn").click(function(){
  	$(".piece").appendTo("#pieces-holder");
+ 	$(".visible").removeClass("visible");
  });
 
 $("#map-picker").change(function(){
